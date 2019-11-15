@@ -11,4 +11,4 @@
 
 // Expose internals to UnitTests assembly for testing.
 [assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute(
-    "NetCoreProject.UnitTests")]
+    "NLCaseConvert.UnitTests")]

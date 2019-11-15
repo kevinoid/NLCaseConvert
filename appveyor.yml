@@ -31,7 +31,7 @@ dotnet_csproj:
 
 # builds solution in project root by default
 # build:
-#   project: NetCoreProject.sln
+#   project: NLCaseConvert.sln
 
 # Note: Built-in --collect:"Code Coverage" currently only works on Windows
 # See https://github.com/Microsoft/vstest/issues/981
@@ -44,13 +44,13 @@ dotnet_csproj:
 # Note: coverlet.msbuild and coverlet.console have known issues
 # https://github.com/tonerdo/coverlet/blob/master/Documentation/KnowIssues.md
 before_test:
-- dotnet add NetCoreProject.UnitTests/NetCoreProject.UnitTests.csproj package coverlet.collector
+- dotnet add NLCaseConvert.UnitTests/NLCaseConvert.UnitTests.csproj package coverlet.collector
 test_script:
 - dotnet test --settings TestCoverage.runsettings
 after_test:
 - ps: |-
     [string] $coverageFilePath = Resolve-Path `
-        -Path "NetCoreProject.UnitTests\TestResults\*\*.opencover.xml"
+        -Path "NLCaseConvert.UnitTests\TestResults\*\*.opencover.xml"
     Push-AppveyorArtifact $coverageFilePath
 
     if ($env:CODECOV_PROJ_TOKEN) {

@@ -1,24 +1,17 @@
-.NET Core Project Template
-==========================
+NLCaseConvert
+=============
 
-[![Build Status](https://img.shields.io/appveyor/ci/kevinoid/NetCoreProject/master.svg?style=flat&label=build+on+windows)](https://ci.appveyor.com/project/kevinoid/NetCoreProject)
-[![Coverage](https://img.shields.io/codecov/c/github/kevinoid/NetCoreProject.svg?style=flat)](https://codecov.io/github/kevinoid/NetCoreProject?branch=master)
-[![.NET Version](https://img.shields.io/badge/.NET-netstandard2.0-informational.svg?style=flat)](https://www.nuget.org/packages/NetCoreProject)
-[![Version on NuGet](https://img.shields.io/nuget/v/NetCoreProject.svg?style=flat)](https://www.nuget.org/packages/NetCoreProject)
+[![Build Status](https://img.shields.io/appveyor/ci/kevinoid/NLCaseConvert/master.svg?style=flat&label=build+on+windows)](https://ci.appveyor.com/project/kevinoid/NLCaseConvert)
+[![Coverage](https://img.shields.io/codecov/c/github/kevinoid/NLCaseConvert.svg?style=flat)](https://codecov.io/github/kevinoid/NLCaseConvert?branch=master)
+[![.NET Version](https://img.shields.io/badge/.NET-netstandard2.1-informational.svg?style=flat)](https://www.nuget.org/packages/NLCaseConvert)
+[![Version on NuGet](https://img.shields.io/nuget/v/NLCaseConvert.svg?style=flat)](https://www.nuget.org/packages/NLCaseConvert)
 
-A .NET Core project template with
-[Roslyn Analyzers](https://github.com/dotnet/roslyn-analyzers/),
-[xUnit](https://xunit.net/),
-[AppVeyor](https://www.appveyor.com),
-[Coverlet](https://github.com/tonerdo/coverlet),
-and [codecov](https://codecov.io/)/[coveralls](https://coveralls.io/).
+A .NET library for natural language case conversion.  Like
+[Humanizer](https://github.com/Humanizr/Humanizer) for cases used in natural
+languages rather than programming languages.
 
-It is the template that I am using for my own C# projects, which represents my
-current preferences.  I am not advocating for these choices nor this template
-specifically, although I am happy to discuss or explain any choices made
-herein.  It is being published both for my own convenience and in case it may
-be useful to others with similar tastes.
-
+This project uses rule-based heuristics rather than more advanced natural
+language processing techniques.
 
 ## Introductory Example
 
@@ -34,18 +27,18 @@ be useful to others with similar tastes.
 
 ## Installation
 
-[This package](https://www.nuget.org/packages/NetCoreProject) can be
+[This package](https://www.nuget.org/packages/NLCaseConvert) can be
 installed using [NuGet](https://www.nuget.org/) by running:
 
 ```sh
-dotnet add package NetCoreProject
+dotnet add package NLCaseConvert
 ```
 
 
 ## API Docs
 
 To use this module as a library, see the [API
-Documentation](https://kevinoid.github.io/NetCoreProject/api).
+Documentation](https://kevinoid.github.io/NLCaseConvert/api).
 
 
 ## Contributing
@@ -60,7 +53,3 @@ for details.
 
 This project is available under the terms of the [MIT License](LICENSE.txt).
 See the [summary at TLDRLegal](https://tldrlegal.com/license/mit-license).
-
-The [template](https://github.com/kevinoid/NetCoreProject) upon which this
-project is based is available under the terms of
-[CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).
