@@ -41,6 +41,19 @@ To use this module as a library, see the [API
 Documentation](https://kevinoid.github.io/NLCaseConvert/api).
 
 
+## References
+
+This project is inspired by, and partially based on, [John Gruber's Title
+Case](https://daringfireball.net/2008/05/title_case)
+([Gist](https://gist.github.com/gruber/9f9e8650d68b13ce4d78)) and
+[`to-title-case`](https://github.com/gouch/to-title-case) npm module.  It
+borrows the test cases from both.
+
+During development, I found [titlecaseconverter.com's Title Capitalization
+Rules](https://titlecaseconverter.com/rules/) to be a particularly helpful
+reference for capitalization conventions from notable style guides.
+
+
 ## Contributing
 
 Contributions are welcome.  See the [Contributing Guidelines](CONTRIBUTING.md)
