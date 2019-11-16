@@ -1,0 +1,94 @@
+# NameCapitalizer Test Data
+# See TestDataFile for a description of the format
+
+# Examples from common surnames from Wikipedia which have mixed capitalization
+# https://en.wikipedia.org/wiki/Lists_of_most_common_surnames
+
+# Note: "de" is complicated, since Dutch and Italian rules differ, and Italian
+# rules differentiate historical from contemporary.
+de smet
+De Smet
+
+o'kelly
+O'Kelly
+
+o' kelly
+O' Kelly
+
+ó murchú
+Ó Murchú
+
+d'angelo
+D'Angelo
+
+țurcan
+Țurcan
+
+mclaughlin
+McLaughlin
+
+macdonald
+MacDonald
+
+# https://en.wikipedia.org/wiki/List_of_Scottish_Gaelic_surnames#Mac-
+mac a' ghobhainn
+Mac a' Ghobhainn
+
+mac an lèigh
+Mac an Lèigh
+
+mac an t-sealgair
+Mac an t-Sealgair
+
+mac'ill'eathainn
+Mac'Ill'Eathainn
+
+mac'illebhàin
+Mac'IlleBhàin
+
+mac'uirigh
+Mac'Uirigh
+
+# Dutch names from The Chicago Manual of Style
+# https://english.stackexchange.com/a/185889
+johannes van keulen
+Johannes van Keulen
+
+van keulen
+Van Keulen
+
+pieter van den keere
+Pieter van den Keere
+
+van den keere
+Van den Keere
+
+vincent van gogh
+Vincent van Gogh
+
+van gogh
+Van Gogh
+
+gerard ter borch
+Gerard ter Borch
+
+ter borch
+Ter Borch
+
+# Arabic names
+# https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Arabic#Names
+
+ali ibn abi talib
+Ali ibn Abi Talib
+
+bandar ibn sultan as-sa'ud
+Bandar ibn Sultan as-Sa'ud
+
+turki ibn faisal as-sa'ud
+Turki ibn Faisal as-Sa'ud
+
+saddam hussein at-tikrit
+Saddam Hussein at-Tikrit
+
+waleed ash-shehri
+Waleed ash-Shehri
