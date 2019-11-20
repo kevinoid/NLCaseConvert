@@ -80,10 +80,14 @@ namespace NLCaseConvert.UnitTests
         {
             yield return pair;
 
+            // Create a test case with \r\n line endings, if the test case
+            // only contains \n
+            // Note: \r is very infrequent.  Test after \n for perf.
             string input = (string)pair[0];
             string inputCrLf =
                 input.Replace("\n", "\r\n", StringComparison.Ordinal);
-            if (!object.ReferenceEquals(input, inputCrLf))
+            if (!object.ReferenceEquals(input, inputCrLf)
+                && !input.Contains('\r', StringComparison.Ordinal))
             {
                 string expected = (string)pair[1];
                 string expectedCrLf =
