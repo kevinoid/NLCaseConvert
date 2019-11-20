@@ -8,6 +8,7 @@ namespace NLCaseConvert.UnitTests
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
 
@@ -52,7 +53,7 @@ namespace NLCaseConvert.UnitTests
             }
         }
 
-        public static IEnumerable<object[]> ReadAll(string path)
+        public static IEnumerable<object[]> ReadAllPairs(string path)
         {
             using var lines = ReadAllLines(path).GetEnumerator();
             while (lines.MoveNext())
@@ -65,16 +66,29 @@ namespace NLCaseConvert.UnitTests
                 }
 
                 yield return new[] { input, lines.Current };
+            }
+        }
 
-                // Ensure tests which include \n also work with \r\n
-                string inputCrLf =
-                    input.Replace("\n", "\r\n", StringComparison.Ordinal);
-                if (!object.ReferenceEquals(input, inputCrLf))
-                {
-                    string expectedCrLf =
-                        lines.Current.Replace("\n", "\r\n", StringComparison.Ordinal);
-                    yield return new[] { inputCrLf, expectedCrLf };
-                }
+        public static IEnumerable<object[]> ReadAll(string path)
+        {
+            return ReadAllPairs(path)
+                .SelectMany(GetAlternateLineEndings);
+        }
+
+        private static IEnumerable<object[]> GetAlternateLineEndings(
+            object[] pair)
+        {
+            yield return pair;
+
+            string input = (string)pair[0];
+            string inputCrLf =
+                input.Replace("\n", "\r\n", StringComparison.Ordinal);
+            if (!object.ReferenceEquals(input, inputCrLf))
+            {
+                string expected = (string)pair[1];
+                string expectedCrLf =
+                    expected.Replace("\n", "\r\n", StringComparison.Ordinal);
+                yield return new[] { inputCrLf, expectedCrLf };
             }
         }
 
