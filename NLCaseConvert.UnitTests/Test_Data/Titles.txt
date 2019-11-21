@@ -196,8 +196,9 @@ For Step-by-Step Directions Email someone@gmail.com
 Have you read “The Lottery”?
 Have You Read “The Lottery”?
 
-your hair[cut] looks (nice)
-Your Hair[cut] Looks (Nice)
+# Duplicate of above
+#your hair[cut] looks (nice)
+#Your Hair[cut] Looks (Nice)
 
 People probably won't put http://foo.com/bar/ in titles
 People Probably Won't Put http://foo.com/bar/ in Titles
@@ -208,8 +209,9 @@ Scott Moritz and TheStreet.com’s Million iPhone La‑La Land
 BlackBerry vs. iPhone
 BlackBerry vs. iPhone
 
-Notes and observations regarding Apple’s announcements from ‘The Beat Goes On’ special event
-Notes and Observations Regarding Apple’s Announcements From ‘The Beat Goes On’ Special Event
+# Duplicate of above
+#Notes and observations regarding Apple’s announcements from ‘The Beat Goes On’ special event
+#Notes and Observations Regarding Apple’s Announcements From ‘The Beat Goes On’ Special Event
 
 Read markdown_rules.txt to find out how _underscores around words_ will be interpretted
 Read markdown_rules.txt to Find Out How _Underscores Around Words_ Will Be Interpretted
@@ -223,17 +225,18 @@ What Is AT&T's Problem?
 Apple deal with AT&T falls through
 Apple Deal With AT&T Falls Through
 
-this v that
-This v That
-
-this vs that
-This vs That
-
-this v. that
-This v. That
-
-this vs. that
-This vs. That
+# Duplicate of above
+#this v that
+#This v That
+#
+#this vs that
+#This vs That
+#
+#this v. that
+#This v. That
+#
+#this vs. that
+#This vs. That
 
 The SEC's Apple probe: what you need to know
 The SEC's Apple Probe: What You Need to Know
