@@ -1,0 +1,79 @@
+# SentenceCapitalizer Test Data
+# See TestDataFile for a description of the format
+
+word
+Word
+
+sentence one. sentence two.
+Sentence one. Sentence two.
+
+sentence one.  sentence two.
+Sentence one.  Sentence two.
+
+capitalize questions?  yes?
+Capitalize questions?  Yes?
+
+capitalize exclamations!  yes!
+Capitalize exclamations!  Yes!
+
+what about interrobang‽  of course!
+What about interrobang‽  Of course!
+
+¿y castellano?  ¿si?
+¿Y castellano?  ¿Si?
+
+¡y español!  ¡adelante!
+¡Y español!  ¡Adelante!
+
+after number footnotes?¹  yes.
+After number footnotes?¹  Yes.
+
+after dagger?†  double dagger?‡  yes.
+After dagger?†  Double dagger?‡  Yes.
+
+first paragraph.\u2029second paragraph.
+First paragraph.\u2029Second paragraph.
+
+jalapeños and more jalapeños.
+Jalapeños and more jalapeños.
+
+hyphenated-word in a sentence.
+Hyphenated-word in a sentence.
+
+# Capitalizing slashed words at the start of a sentence is common,
+# but I am not aware of a style guide which recommends it.
+he/she should know better.
+He/she should know better.
+
+# Full stop is occasionally used inside of words, for programming, stylized
+# names, or to represent omitted or unrepresentable characters.
+# Don't capitalize the word after the full stop.
+joined.word.
+Joined.word.
+
+capitalize a.c.r.o.n.y.m.s?
+Capitalize A.C.R.O.N.Y.M.S?
+
+capitalize n.a.s.a. rockets?
+Capitalize N.A.S.A. rockets?
+
+capitalize n.a.s.a?  rockets!
+Capitalize N.A.S.A?  Rockets!
+
+“full line quote.”
+“Full line quote.”
+
+“start line quote.” yes.
+“Start line quote.” Yes.
+
+“quote” start word.
+“Quote” start word.
+
+quote “middle” word.
+Quote “middle” word.
+
+she told me “you should capitalize quotes which are complete sentences.”
+She told me “You should capitalize quotes which are complete sentences.”
+
+iPad is left alone.  iPhone too.
+iPad is left alone.  iPhone too.
