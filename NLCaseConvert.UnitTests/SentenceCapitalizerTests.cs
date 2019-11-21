@@ -44,6 +44,10 @@ namespace NLCaseConvert.UnitTests
                 Assert.True(
                     replacements.Remove(word, out string? replacement),
                     "Called at most once for each expected word");
+
+                // Note: ! required until Assert.True annotated with DoesNotReturnIf
+                // https://github.com/xunit/xunit/issues/2011
+                // https://github.com/xunit/assert.xunit/pull/36
                 return replacement!;
             }
 
