@@ -32,7 +32,9 @@ namespace NLCaseConvert
 
         public CultureInfo CultureInfo { get; }
 
+#if NETSTANDARD2_1
         [return: NotNullIfNotNull("input")]
+#endif
         public virtual string? Transform(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))

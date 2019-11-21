@@ -32,7 +32,9 @@ namespace NLCaseConvert
 
         public CultureInfo CultureInfo { get; }
 
+#if NETSTANDARD2_1
         [return: NotNullIfNotNull("input")]
+#endif
         public virtual string? Transform(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -68,7 +70,8 @@ namespace NLCaseConvert
                         string cprefix = match.Groups["cprefix"].Value;
                         if (cprefix.Length > 0)
                         {
-                            return textInfo.ToUpper(cprefix[0]) + cprefix[1..];
+                            return textInfo.ToUpper(cprefix[0])
+                                + cprefix.Substring(1);
                         }
 
                         string first = match.Groups["first"].Value;
@@ -305,7 +308,7 @@ namespace NLCaseConvert
 
             public string GetCapitalizedPrefixPattern()
             {
-                return string.Join('|', this.CapitalizedPrefixPatterns);
+                return string.Join("|", this.CapitalizedPrefixPatterns);
             }
 
             public string GetExcludePattern()
@@ -344,7 +347,7 @@ namespace NLCaseConvert
 
             public string GetUncapitalizedPrefixPattern()
             {
-                return string.Join('|', this.UncapitalizedPrefixPatterns);
+                return string.Join("|", this.UncapitalizedPrefixPatterns);
             }
         }
     }
