@@ -222,7 +222,9 @@ namespace NLCaseConvert
                 // https://www.thoughtco.com/italian-capitalization-rules-2011478
                 Array.AsReadOnly(new[]
                 {
-                    @"d[ie']",
+                    // Note: di and di prefixes currently excluded due to too
+                    // many false-positives (Dennis, Denver, Diego, Diana)
+                    @"d'",
                 });
 
             /// <summary>
