@@ -67,6 +67,12 @@ namespace NLCaseConvert
 
                         var textInfo = this.CultureInfo.TextInfo;
 
+                        string allupper = match.Groups["allupper"].Value;
+                        if (allupper.Length > 0)
+                        {
+                            return textInfo.ToUpper(allupper);
+                        }
+
                         string cprefix = match.Groups["cprefix"].Value;
                         if (cprefix.Length > 0)
                         {
@@ -88,6 +94,8 @@ namespace NLCaseConvert
 
                 // Match words which are excluded from case conversion
                 + @"(?<exclusion>" + builder.GetExcludePattern() + ")"
+
+                + @"|(?<allupper>" + builder.GetAllUpperPattern() + ")"
 
                 // Match capitalized prefix
                 + @"|(?<cprefix>" + builder.GetCapitalizedPrefixPattern() + ")"
@@ -237,6 +245,20 @@ namespace NLCaseConvert
             public CultureInfo CultureInfo { get; }
 
             /// <summary>
+            /// Gets a pattern to match a word where all letters should be
+            /// changed to upper-case.
+            /// </summary>
+            public ICollection<string> AllUpperWordPatterns { get; } =
+                new List<string>()
+                {
+                    // Roman numerals (generational suffix or reginal number)
+                    // Exclude xi which is a common Chinese family name
+                    // Add assertion to ensure match at least one character
+                    // https://stackoverflow.com/a/267405
+                    @"(?:(?=[mdclxvi])(?!xi\b)m{0,4}(?:cm|cd|d?c{0,3})(?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3}))",
+                };
+
+            /// <summary>
             /// Gets a pattern to match everything after the lowercase letter
             /// of a word which will be capitalized.
             ///
@@ -306,6 +328,16 @@ namespace NLCaseConvert
             public NameCapitalizer Build()
             {
                 return new NameCapitalizer(this);
+            }
+
+            public string GetAllUpperPattern()
+            {
+                return "(?:"
+
+                    + string.Join("|", this.AllUpperWordPatterns)
+
+                    // Ensure pattern ends on a word boundary
+                    + @")(?![\p{L}\p{Mn}\p{Nd}]|['`’][\p{L}\p{Mn}\p{Nd}])";
             }
 
             public string GetCapitalizedPrefixPattern()

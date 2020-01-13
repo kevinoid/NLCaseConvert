@@ -42,6 +42,20 @@ McLaughlin
 macdonald
 MacDonald
 
+albert wellington iii
+Albert Wellington III
+
+albert wellington iv
+Albert Wellington IV
+
+king louis xiv
+King Louis XIV
+
+# XI is a roman numeral and common Chinese family name
+# https://en.wikipedia.org/wiki/Xi_(surname)
+xi jinping
+Xi Jinping
+
 # https://en.wikipedia.org/wiki/List_of_Scottish_Gaelic_surnames#Mac-
 mac a' ghobhainn
 Mac a' Ghobhainn
