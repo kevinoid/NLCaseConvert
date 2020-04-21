@@ -23,15 +23,21 @@ image:
 #  - x86
 #  - x64
 
+before_build:
+# restore before build to avoid error NETSDK1004 with MSBuild (in VS image)
+- dotnet restore
+
 # Include build number in FileVersion
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
   file_version: '$(VersionPrefix).{build}'
 
-# builds solution in project root by default
-# build:
-#   project: NLCaseConvert.sln
+build:
+  # Enable MSBuild parallel builds
+  parallel: true
+  # specify solution to build (builds solution in project root by default)
+  # project: NLCaseConvert.sln
 
 # Note: Built-in --collect:"Code Coverage" currently only works on Windows
 # See https://github.com/Microsoft/vstest/issues/981
