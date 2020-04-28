@@ -77,7 +77,7 @@
     https://github.com/dotnet/roslyn-analyzers/blob/master/src/Microsoft.CodeAnalysis.VersionCheckAnalyzer/Microsoft.CodeAnalysis.VersionCheckAnalyzer.md
     So not added here.
     -->
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8">
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
