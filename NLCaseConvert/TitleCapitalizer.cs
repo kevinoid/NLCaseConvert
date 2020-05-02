@@ -85,11 +85,13 @@ namespace NLCaseConvert
         /// Facilitates constructing a <see cref="TitleCapitalizer" /> from
         /// configurable properties.
         ///
+        /// <para>
         /// Style guides differ about which words should be capitalized in a
         /// title and when.  For example, see
         /// <see href="https://titlecaseconverter.com/rules/" /> for discussion
         /// of the title capitalization conventions from several popular style
         /// guides.
+        /// </para>
         /// </summary>
         [SuppressMessage(
             "Microsoft.Design",
@@ -144,6 +146,7 @@ namespace NLCaseConvert
             /// Gets a pattern to match everything after the lowercase letter of a
             /// word which will be converted to title case.
             ///
+            /// <para>
             /// Differences from <c>\w</c> (<c>[\p{L}\p{Mn}\p{Nd}\p{Pc}]</c>):
             /// <list type="bullet">
             /// <item>
@@ -172,6 +175,7 @@ namespace NLCaseConvert
             /// </description>
             /// </item>
             /// </list>
+            /// </para>
             /// </summary>
             public string CapitalizeWordSuffixPattern { get; } =
                 @"[\p{Ll}\p{Lo}\p{Lm}\p{Mn}\p{Nd}'`’()\[\]]*";
@@ -256,11 +260,13 @@ namespace NLCaseConvert
             /// Lenient pattern for a URI (or IRI) based on
             /// <see href="https://stackoverflow.com/a/190405" />.
             ///
+            /// <para>
             /// Note: If this is too lenient, consider excluding characters
             /// from RFC 2396 unwise (which are rare) or requiring at least
             /// one dot or slash if not all ASCII.
             /// <see href="https://tools.ietf.org/html/rfc2396#section-2.4.3" />
             /// <see href="https://stackoverflow.com/a/13500078" />.
+            /// </para>
             /// </remarks>
             [SuppressMessage(
                 "Microsoft.Design",

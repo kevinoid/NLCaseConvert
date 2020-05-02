@@ -15,18 +15,24 @@ namespace NLCaseConvert.UnitTests
     /// <summary>
     /// Utility functions for dealing with test data files.
     ///
+    /// <para>
     /// A test data file is a UTF-8-encoded plain text file, stored in the
     /// <c>Test_Data</c> directory, which contains pairs of lines with the
     /// input first and correct capitalization of the input second.
+    /// </para>
     ///
+    /// <para>
     /// Lines may contain
     /// <see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#string-literals">escape
     /// sequences as defined for C# 6 regular string literals</see>.  A
     /// backslash followed by anything other than a valid escape sequence is
     /// invalid.
+    /// </para>
     ///
+    /// <para>
     /// Blank lines and comments (lines where the first non-whitespace
     /// character is <c>#</c>) are ignored.
+    /// </para>
     /// </summary>
     public static class TestDataFile
     {

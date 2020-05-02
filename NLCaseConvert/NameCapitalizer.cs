@@ -180,7 +180,9 @@ namespace NLCaseConvert
             /// Gets a pattern to match words which are excluded from
             /// capitalization in Arabic names.
             ///
+            /// <para>
             /// Currently matches common patronymics and teknonymics.
+            /// </para>
             /// </summary>
             public static ICollection<string> ExcludedArabicWordPatterns { get; } =
 
@@ -201,7 +203,9 @@ namespace NLCaseConvert
             /// Gets a pattern to match words which are excluded from
             /// capitalization in Dutch names.
             ///
+            /// <para>
             /// Currently matches prepositions which do not follow another word.
+            /// </para>
             /// </summary>
             public static ICollection<string> ExcludedDutchWordPatterns { get; } =
 
@@ -262,6 +266,7 @@ namespace NLCaseConvert
             /// Gets a pattern to match everything after the lowercase letter
             /// of a word which will be capitalized.
             ///
+            /// <para>
             /// Differences from <c>\w</c> (<c>[\p{L}\p{Mn}\p{Nd}\p{Pc}]</c>):
             /// <list type="bullet">
             /// <item>
@@ -280,6 +285,7 @@ namespace NLCaseConvert
             /// </description>
             /// </item>
             /// </list>
+            /// </para>
             /// </summary>
             public string CapitalizeWordSuffixPattern { get; } =
                 @"[\p{Ll}\p{Lo}\p{Lm}\p{Mn}\p{Nd}'`’]*";

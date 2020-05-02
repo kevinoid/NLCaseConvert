@@ -328,6 +328,7 @@ namespace NLCaseConvert
             /// Gets a pattern to match everything after the lowercase letter of a
             /// word which will be converted to title case.
             ///
+            /// <para>
             /// Differences from <c>\w</c> (<c>[\p{L}\p{Mn}\p{Nd}\p{Pc}]</c>):
             /// <list type="bullet">
             /// <item>
@@ -356,6 +357,7 @@ namespace NLCaseConvert
             /// </description>
             /// </item>
             /// </list>
+            /// </para>
             /// </summary>
             public string CapitalizeWordSuffixPattern { get; } =
                 @"(?:[\p{Ll}\p{Lo}\p{Lm}\p{Mn}\p{Nd}.'`’()\[\]\u2010\u2011-]*[\p{Ll}\p{Lo}\p{Lm}\p{Mn}\p{Nd})\]])?(?![\p{L}\p{Mn}\p{Nd}])";
@@ -364,6 +366,7 @@ namespace NLCaseConvert
             /// Gets or sets a function which returns a canonical capitalization
             /// for a non-capitalized word, if one exists.
             ///
+            /// <para>
             /// This function is used for capitalizing proper nouns and other
             /// words which always have a particular capitalization.  Since the
             /// list of such nouns is likely to be quite large (or the inverse
@@ -371,6 +374,7 @@ namespace NLCaseConvert
             /// time/space tradeoffs (e.g. between Dictionary and
             /// case-insensitive Set), this function allows the caller to
             /// optimize as they see fit.
+            /// </para>
             /// </summary>
             public Func<string, string?>? Canonicalizer { get; set; }
 
