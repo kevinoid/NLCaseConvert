@@ -1,3 +1,66 @@
 #nullable enable
-NetCoreProject.Program
-static NetCoreProject.Program.Main(string![]! args) -> int
+NLCaseConvert.NameCapitalizer
+NLCaseConvert.NameCapitalizer.Builder
+NLCaseConvert.NameCapitalizer.Builder.AllUpperWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.NameCapitalizer.Builder.Build() -> NLCaseConvert.NameCapitalizer!
+NLCaseConvert.NameCapitalizer.Builder.Builder() -> void
+NLCaseConvert.NameCapitalizer.Builder.Builder(System.Globalization.CultureInfo! cultureInfo) -> void
+NLCaseConvert.NameCapitalizer.Builder.CapitalizeWordSuffixPattern.get -> string!
+NLCaseConvert.NameCapitalizer.Builder.CapitalizedPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.NameCapitalizer.Builder.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.NameCapitalizer.Builder.ExcludedInteriorWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.NameCapitalizer.Builder.ExcludedWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.NameCapitalizer.Builder.GetAllUpperPattern() -> string!
+NLCaseConvert.NameCapitalizer.Builder.GetCapitalizedPrefixPattern() -> string!
+NLCaseConvert.NameCapitalizer.Builder.GetExcludePattern() -> string!
+NLCaseConvert.NameCapitalizer.Builder.GetUncapitalizedPrefixPattern() -> string!
+NLCaseConvert.NameCapitalizer.Builder.OtherWordPattern.get -> string!
+NLCaseConvert.NameCapitalizer.Builder.UncapitalizedPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.NameCapitalizer.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.NameCapitalizer.NameCapitalizer(NLCaseConvert.NameCapitalizer.Builder! builder) -> void
+NLCaseConvert.SentenceCapitalizer
+NLCaseConvert.SentenceCapitalizer.Builder
+NLCaseConvert.SentenceCapitalizer.Builder.AfterLineBreak.get -> bool
+NLCaseConvert.SentenceCapitalizer.Builder.AfterLineBreak.set -> void
+NLCaseConvert.SentenceCapitalizer.Builder.AfterParagraphBreak.get -> bool
+NLCaseConvert.SentenceCapitalizer.Builder.AfterParagraphBreak.set -> void
+NLCaseConvert.SentenceCapitalizer.Builder.Build() -> NLCaseConvert.SentenceCapitalizer!
+NLCaseConvert.SentenceCapitalizer.Builder.Builder() -> void
+NLCaseConvert.SentenceCapitalizer.Builder.Builder(System.Globalization.CultureInfo! cultureInfo) -> void
+NLCaseConvert.SentenceCapitalizer.Builder.Canonicalizer.get -> System.Func<string!, string?>?
+NLCaseConvert.SentenceCapitalizer.Builder.Canonicalizer.set -> void
+NLCaseConvert.SentenceCapitalizer.Builder.CapitalizeWordSuffixPattern.get -> string!
+NLCaseConvert.SentenceCapitalizer.Builder.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.SentenceCapitalizer.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.SentenceCapitalizer.SentenceCapitalizer(NLCaseConvert.SentenceCapitalizer.Builder! builder) -> void
+NLCaseConvert.TitleCapitalizer
+NLCaseConvert.TitleCapitalizer.Builder
+NLCaseConvert.TitleCapitalizer.Builder.AdditionalExcludePatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.TitleCapitalizer.Builder.Build() -> NLCaseConvert.TitleCapitalizer!
+NLCaseConvert.TitleCapitalizer.Builder.Builder() -> void
+NLCaseConvert.TitleCapitalizer.Builder.Builder(System.Globalization.CultureInfo! cultureInfo) -> void
+NLCaseConvert.TitleCapitalizer.Builder.CapitalizeSmallAtEnd.get -> bool
+NLCaseConvert.TitleCapitalizer.Builder.CapitalizeSmallAtHyphenatedStart.get -> bool
+NLCaseConvert.TitleCapitalizer.Builder.CapitalizeSmallAtStart.get -> bool
+NLCaseConvert.TitleCapitalizer.Builder.CapitalizeSmallInHyphenated.get -> bool
+NLCaseConvert.TitleCapitalizer.Builder.CapitalizeWordSuffixPattern.get -> string!
+NLCaseConvert.TitleCapitalizer.Builder.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.TitleCapitalizer.Builder.EmailPattern.get -> string!
+NLCaseConvert.TitleCapitalizer.Builder.FilePathPattern.get -> string!
+NLCaseConvert.TitleCapitalizer.Builder.GetExcludePattern() -> string!
+NLCaseConvert.TitleCapitalizer.Builder.MixedCaseWordPattern.get -> string!
+NLCaseConvert.TitleCapitalizer.Builder.OtherWordPattern.get -> string!
+NLCaseConvert.TitleCapitalizer.Builder.SmallWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
+NLCaseConvert.TitleCapitalizer.Builder.UriPattern.get -> string!
+NLCaseConvert.TitleCapitalizer.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.TitleCapitalizer.TitleCapitalizer(NLCaseConvert.TitleCapitalizer.Builder! builder) -> void
+static NLCaseConvert.NameCapitalizer.Builder.ArabicPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
+static NLCaseConvert.NameCapitalizer.Builder.CelticCapitalizedPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
+static NLCaseConvert.NameCapitalizer.Builder.CelticUncapitalizedPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
+static NLCaseConvert.NameCapitalizer.Builder.ExcludedArabicWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
+static NLCaseConvert.NameCapitalizer.Builder.ExcludedDutchWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
+static NLCaseConvert.NameCapitalizer.Builder.ItalianPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
+static NLCaseConvert.NameCapitalizer.Builder.MixedCaseWordPattern.get -> string!
+virtual NLCaseConvert.NameCapitalizer.Transform(string? input) -> string?
+virtual NLCaseConvert.SentenceCapitalizer.Transform(string? input) -> string?
+virtual NLCaseConvert.TitleCapitalizer.Transform(string? input) -> string?
