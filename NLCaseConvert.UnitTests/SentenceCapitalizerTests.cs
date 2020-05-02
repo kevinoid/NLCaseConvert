@@ -28,7 +28,7 @@ namespace NLCaseConvert.UnitTests
         [Fact]
         public static void AppliesCanonicalizerToEachUncapitalizedWord()
         {
-            var input = "\"words n.e.e.d? capitalization, 'or' pun-ctuation.\"";
+            const string input = "\"words n.e.e.d? capitalization, 'or' pun-ctuation.\"";
             var replacements = new Dictionary<string, string>
             {
                 { "words", "wORds" },
@@ -37,7 +37,7 @@ namespace NLCaseConvert.UnitTests
                 { "or", "OR" },
                 { "pun-ctuation", "PUN-ctuation" },
             };
-            var expected = "\"wORds N.E.E.D? cApitalization, 'OR' PUN-ctuation.\"";
+            const string expected = "\"wORds N.E.E.D? cApitalization, 'OR' PUN-ctuation.\"";
 
             string TestCanonicalizer(string word)
             {
