@@ -21,7 +21,7 @@ namespace NLCaseConvert
     /// <c>AppendJoin</c> extensions for <see cref="StringBuilder" /> compatible
     /// with the <c>AppendJoin</c> methods in .NET Standard 2.1.
     /// </summary>
-    internal static partial class StringBuilderExtensions
+    internal static class StringBuilderExtensions
     {
         public static StringBuilder AppendJoin(this StringBuilder builder, string? separator, params object?[] values)
         {
