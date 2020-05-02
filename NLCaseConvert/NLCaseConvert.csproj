@@ -6,9 +6,10 @@
     <!-- For https://github.com/OmniSharp/omnisharp-vscode/issues/1197 -->
     <GenerateFullPaths>true</GenerateFullPaths>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <!-- Note: May want to disable Nullable for netstandard < 2.1 due to lack
-      of nullability annotations, or provide polyfills like JSON.NET:
-      https://github.com/dotnet/roslyn/issues/37995#issuecomment-531549082 -->
+    <!-- Note: Nullable is problematic for netstandard < 2.1 due to lack of
+      nullability annotations.  Consider disabling, polyfilling (a la JSON.NET
+      https://github.com/dotnet/roslyn/issues/37995#issuecomment-531549082),
+      and/or using the Nullable NuGet package. -->
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
 
@@ -60,6 +61,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--
+      For Microsoft.CodeAnalysis.PublicApiAnalyzers.
+      https://github.com/dotnet/roslyn-analyzers/blob/master/src/PublicApiAnalyzers/PublicApiAnalyzers.Help.md
+    -->
+    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
+    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="stylecop.json" />
   </ItemGroup>
 
@@ -68,39 +78,38 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <!--
-    Note: Microsoft.CodeAnalysis.VersionCheckAnalyzer only checks Roslyn version
-    https://github.com/dotnet/roslyn-analyzers/blob/master/src/Microsoft.CodeAnalysis.VersionCheckAnalyzer/Microsoft.CodeAnalysis.VersionCheckAnalyzer.md
-    So not added here.
+      Not referencing:
+      Microsoft.CodeQuality.Analyzers (part of FxCopAnalyzers)
+      Microsoft.NetCore.Analyzers (part of FxCopAnalyzers)
+      Microsoft.NetFramework.Analyzers (part of FxCopAnalyzers)
+      Microsoft.CodeAnalysis.VersionCheckAnalyzer (FxCopAnalyzers dep only)
+      Text.Analyzers (https://github.com/dotnet/roslyn-analyzers/issues/2200)
     -->
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <!-- Add Microsoft.EntityFrameworkCore.Analyzers for EF Core -->
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.8">
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
+    <!-- TODO: Add Microsoft.EntityFrameworkCore.Analyzers for EF Core proj -->
     <PackageReference Include="Puma.Security.Rules" Version="2.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Text.Analyzers" Version="2.6.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
