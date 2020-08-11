@@ -322,7 +322,7 @@ namespace NLCaseConvert
                     excludePattern
                         .Append("(?:")
                         .AppendJoin('|', this.SmallWordPatterns)
-                        .Append(")");
+                        .Append(')');
 
                     if (this.CapitalizeSmallAtHyphenatedStart
                             && this.CapitalizeSmallInHyphenated)
