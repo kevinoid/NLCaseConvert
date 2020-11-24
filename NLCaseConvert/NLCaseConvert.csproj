@@ -1,57 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-
-    <!-- For https://github.com/OmniSharp/omnisharp-vscode/issues/1197 -->
-    <GenerateFullPaths>true</GenerateFullPaths>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <!-- Note: Nullable is problematic for netstandard < 2.1 due to lack of
-      nullability annotations.  Consider disabling, polyfilling (a la JSON.NET
-      https://github.com/dotnet/roslyn/issues/37995#issuecomment-531549082),
-      and/or using the Nullable NuGet package. -->
-    <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
-
-    <AssemblyName>NLCaseConvert</AssemblyName>
-    <Company>Kevin Locke</Company>
-    <Copyright>Copyright © 2019 Kevin Locke</Copyright>
     <Description>Library for natural language case conversion.</Description>
-    <!-- PackageLicenseExpression uses SPDX Expression Syntax Version 2.0
-      https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60
-      https://spdx.org/licenses/ -->
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <ProjectUrl>https://github.com/kevinoid/NLCaseConvert</ProjectUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/kevinoid/NLCaseConvert.git</RepositoryUrl>
 
-    <!-- https://andrewlock.net/version-vs-versionsuffix-vs-packageversion-what-do-they-all-mean/ -->
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>preview</VersionSuffix>
+    <OutputType>Library</OutputType>
 
     <!--
       Analyze additional files (for Puma Scan)
       https://github.com/pumasecurity/puma-scan/wiki/Installation#step-3-enable-additional-file-analysis
     -->
     <AdditionalFileItemNames>$(AdditionalFileItemNames);Content</AdditionalFileItemNames>
+  </PropertyGroup>
 
-    <ApplicationIcon />
+  <PropertyGroup Condition="'$(OutputType)'=='Exe'">
+    <!-- Need a "concrete" framework (i.e. not netstandard) for Exe -->
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <!-- Configure class with Main method entry point -->
+    <StartupObject>NetCoreProject.Program</StartupObject>
+
+    <!-- Uncomment to embed a .ico file as the win32 icon resource -->
+    <!-- <ApplicationIcon>NetCoreProject.ico<ApplicationIcon> -->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <CodeAnalysisRuleSet>MostAnalyzerRules.ruleset</CodeAnalysisRuleSet>
-    <!-- Note: Duplicated with .editorconfig to support old VS and VS -->
-    <NoWarn>1573;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <CodeAnalysisRuleSet>MostAnalyzerRules.ruleset</CodeAnalysisRuleSet>
-    <!-- Note: Duplicated with .editorconfig to support old VS and VS -->
-    <NoWarn>1573;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(CI)' == 'True'">
@@ -60,11 +39,12 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!--
-      For Microsoft.CodeAnalysis.PublicApiAnalyzers.
-      https://github.com/dotnet/roslyn-analyzers/blob/master/src/PublicApiAnalyzers/PublicApiAnalyzers.Help.md
-    -->
+  <!--
+    For libraries, maintain public API in PublicApi.*.txt files to review API
+    changes using Microsoft.CodeAnalysis.PublicApiAnalyzers.
+    https://github.com/dotnet/roslyn-analyzers/blob/master/src/PublicApiAnalyzers/PublicApiAnalyzers.Help.md
+  -->
+  <ItemGroup Condition="'$(OutputType)'=='Library'">
     <AdditionalFiles Include="PublicAPI.Shipped.txt" />
     <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
   </ItemGroup>
@@ -90,11 +70,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.1">
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.1" Condition="'$(OutputType)'=='Library'">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <!-- TODO: Add Microsoft.EntityFrameworkCore.Analyzers for EF Core proj -->
     <PackageReference Include="Puma.Security.Rules" Version="2.4.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -103,14 +82,26 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.14.0.22654">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.15.0.24505">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+    <!-- Note: .Unstable is recommended by devs due to update frequency.  See:
+         https://github.com/DotNetAnalyzers/StyleCopAnalyzers/issues/2585 -->
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.261">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
+  <!--
+    Make members declared with internal visibility accessible from the
+    UnitTests assembly with a corresponding name.
+    https://stackoverflow.com/a/49978185
+  -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(MSBuildProjectName).UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>
