@@ -92,7 +92,7 @@ namespace NLCaseConvert.UnitTests
             string input = (string)pair[0];
             string inputCrLf =
                 input.Replace("\n", "\r\n", StringComparison.Ordinal);
-            if (!object.ReferenceEquals(input, inputCrLf)
+            if (!ReferenceEquals(input, inputCrLf)
                 && !input.Contains('\r', StringComparison.Ordinal))
             {
                 string expected = (string)pair[1];
