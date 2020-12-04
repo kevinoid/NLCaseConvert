@@ -77,7 +77,7 @@ namespace NLCaseConvert
                         if (cprefix.Length > 0)
                         {
                             return textInfo.ToUpper(cprefix[0])
-                                + cprefix.Substring(1);
+                                + cprefix[1..];
                         }
 
                         string first = match.Groups["first"].Value;
