@@ -18,7 +18,7 @@ namespace NLCaseConvert.UnitTests
         [InlineData(null, null)]
         [InlineData("", "")]
         [InlineData(" ", " ")]
-        [MemberData(nameof(TestDataFile.ReadAll), "Names.txt", MemberType=typeof(TestDataFile))]
+        [MemberData(nameof(TestDataFile.ReadAll), "Names.txt", MemberType = typeof(TestDataFile))]
         public static void CapitalizesInvariantCorrectly(string? input, string? expected)
         {
             Assert.Equal(expected, NameCapitalizer.Transform(input));
