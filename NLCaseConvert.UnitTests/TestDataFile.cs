@@ -148,6 +148,10 @@ namespace NLCaseConvert.UnitTests
                         return char.ConvertFromUtf32(code);
                     }
 
+                    // Character after \x not matched (not hex, or none)
+                    break;
+                default:
+                    // Unrecognized character following \
                     break;
             }
 
