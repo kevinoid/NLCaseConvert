@@ -13,6 +13,19 @@
     <LangVersion>latest</LangVersion>
 
     <!--
+      Enable overflow checking by C# compiler.
+
+      Code which relies on overflow should use unchecked.  I prefer immediate,
+      explicit failure (via throwing OverflowException) to continuing with
+      potentially incorrect behavior on overflow.
+
+      I expect minimal performance impact due to compiler optimizations and
+      amenability to branch prediction.  Performance-critical code can disable
+      as-needed.
+    -->
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+
+    <!--
       Enable nullable reference types.
       https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references
 
@@ -55,6 +68,9 @@
       analyzers enabled by default. -->
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <!-- Be aware, preview causes InvalidAgument error on VS Build tab.
+      https://developercommunity.visualstudio.com/content/problem/1222861
+      https://github.com/dotnet/project-system/pull/6673 -->
     <AnalysisLevel>preview</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>

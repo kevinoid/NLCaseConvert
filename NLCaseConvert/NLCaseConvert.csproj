@@ -14,7 +14,7 @@
 
   <PropertyGroup Condition="'$(OutputType)'=='Exe'">
     <!-- Need a "concrete" framework (i.e. not netstandard) for Exe -->
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
 
     <!-- Configure class with Main method entry point -->
     <StartupObject>NetCoreProject.Program</StartupObject>
@@ -25,12 +25,10 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <!--
@@ -86,7 +84,7 @@
     </PackageReference>
     <!-- Note: .Unstable is recommended by devs due to update frequency.  See:
          https://github.com/DotNetAnalyzers/StyleCopAnalyzers/issues/2585 -->
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.261">
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.304">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -99,7 +97,7 @@
   -->
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>$(MSBuildProjectName).UnitTests</_Parameter1>
+      <_Parameter1>$(AssemblyName).UnitTests</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 </Project>
