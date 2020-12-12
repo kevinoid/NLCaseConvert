@@ -12,7 +12,11 @@
       Newtonsoft.Json passes TestFrameworks from checks in build.ps1.  Painful.
     -->
     <TargetFrameworks Condition="'$(CI)' == 'True'">$(TargetFrameworks);netcoreapp2.1</TargetFrameworks>
-    <TargetFrameworks Condition="'$(CI)' == 'True' and $([MSBuild]::IsOSPlatform('Windows'))">$(TargetFrameworks);net461</TargetFrameworks>
+    <!--
+      Although NLCaseConvert supports net35 or later, xunit 2.4 only supports
+      netstandard1.1 and later.
+    -->
+    <TargetFrameworks Condition="'$(CI)' == 'True' and $([MSBuild]::IsOSPlatform('Windows'))">$(TargetFrameworks);net45</TargetFrameworks>
 
     <!--
       Disable check for EOL Target Framework (NETSDK1138).
