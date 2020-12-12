@@ -207,7 +207,7 @@ namespace NLCaseConvert
                     {
                         return context.Value
                             + textInfo.ToUpper(word[0])
-                            + word[1..];
+                            + word.Substring(1);
                     }
 
                     // Otherwise, leave match as-is
@@ -291,7 +291,7 @@ namespace NLCaseConvert
             if (word[0] == 'i' && (word.Length == 1 || word[1] == '\''))
             {
                 return this.CultureInfo.TextInfo.ToUpper(word[0])
-                    + word[1..];
+                    + word.Substring(1);
             }
 
             return null;
