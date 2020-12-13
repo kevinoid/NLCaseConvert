@@ -80,6 +80,10 @@ dotnet_diagnostic.IDE0045.severity = silent
 dotnet_diagnostic.IDE0046.severity = silent
 # Suggest "Convert to tuple"
 dotnet_diagnostic.IDE0050.severity = suggestion
+# Ignore "Substring can be simplified"
+# Useful once support for netstandard2.0 is dropped.  Even multi-target:
+# https://github.com/dotnet/roslyn/issues/35936#issuecomment-738857521
+dotnet_diagnostic.IDE0057.severity = silent
 # Suggest "Populate switch"
 dotnet_diagnostic.IDE0072.severity = suggestion
 # Suggest "Expression value is never used"
