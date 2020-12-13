@@ -142,7 +142,7 @@ namespace NLCaseConvert.UnitTests
                     if (escapeStr.Length > 1)
                     {
                         int code = int.Parse(
-                            escapeStr[1..],
+                            escapeStr.Substring(1),
                             NumberStyles.HexNumber,
                             CultureInfo.InvariantCulture);
                         return char.ConvertFromUtf32(code);
