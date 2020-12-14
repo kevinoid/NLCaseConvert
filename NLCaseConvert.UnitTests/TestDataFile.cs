@@ -41,7 +41,7 @@ namespace NLCaseConvert.UnitTests
 
         public static IEnumerable<string> ReadAllLines(string path)
         {
-            string fullPath = Path.Join(
+            string fullPath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Test_Data",
                 path);
@@ -90,14 +90,12 @@ namespace NLCaseConvert.UnitTests
             // only contains \n
             // Note: \r is very infrequent.  Test after \n for perf.
             string input = (string)pair[0];
-            string inputCrLf =
-                input.Replace("\n", "\r\n", StringComparison.Ordinal);
+            string inputCrLf = input.Replace("\n", "\r\n");
             if (!ReferenceEquals(input, inputCrLf)
-                && !input.Contains('\r', StringComparison.Ordinal))
+                && input.IndexOf('\r') < 0)
             {
                 string expected = (string)pair[1];
-                string expectedCrLf =
-                    expected.Replace("\n", "\r\n", StringComparison.Ordinal);
+                string expectedCrLf = expected.Replace("\n", "\r\n");
                 yield return new[] { inputCrLf, expectedCrLf };
             }
         }
