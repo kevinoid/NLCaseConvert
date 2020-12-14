@@ -4,8 +4,6 @@
 -->
 <Project>
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-
     <!--
       Use the latest released version of the C# language.
       https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version
@@ -73,6 +71,13 @@
       https://github.com/dotnet/project-system/pull/6673 -->
     <AnalysisLevel>preview</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+
+    <!--
+      By default, symbols are not generated in Release mode.  This complicates
+      debugging, prevents profiling, and removes source information from stack
+      traces.  Instead, always generate debug symbols.
+    -->
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <!-- Treat warnings as errors in CI to enforce rules by failing the build. -->

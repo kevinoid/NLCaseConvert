@@ -1,0 +1,154 @@
+# GitHub Actions Workflow configuration
+# https://docs.github.com/actions/reference/workflow-syntax-for-github-actions
+# https://github.com/actions/starter-workflows/blob/main/ci/dotnet-core.yml
+
+name: .NET
+
+# Note: on key treated as boolean key by YAML
+# https://github.com/adrienverge/yamllint/issues/158#issuecomment-454313233
+# However, GitHub Actions documentation is consistent in using it unquoted.
+on:   # yamllint disable-line rule:truthy
+- push
+- pull_request
+
+jobs:
+  test:
+    name: Test dotnet ${{ matrix.dotnet }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        # Uncomment to test on macOS:
+        # - macos-latest
+        - ubuntu-latest
+        - windows-latest
+        dotnet:
+        # FIXME: Would prefer to test with latest SDK, or at least latest minor
+        # version.  Not currently supported:
+        # https://github.com/actions/setup-dotnet/issues/93
+        # Poses problems for versions incompatible with worker image:
+        # https://github.com/actions/setup-dotnet/issues/23#issuecomment-523554330
+        # Note: Must quote value.  5.0 becomes 5, which silently fails.
+        - '5.0'
+        # Uncomment to build using an earlier SDK version:
+        # - 3.1
+    env:
+      # Save NuGet packages in workspace for better performance on Windows.
+      # GitHub-hosted runners are Azure Standard_DS2_v2 VMs with workspace
+      # on Azure "temporary drive" which has much higher IOPS than OS drive.
+      # https://docs.microsoft.com/azure/virtual-machines/dv2-dsv2-series#dsv2-series
+      # https://docs.microsoft.com/nuget/Consume-Packages/managing-the-global-packages-and-cache-folders
+      #
+      # Use .nuget/packages, as suggested by
+      # https://github.com/actions/cache/blob/main/examples.md#c---nuget
+      # and because dotfiles are ignored by MSBuild by default
+      # https://github.com/dotnet/sdk/blob/v5.0.101-servicing.20601.7/src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.DefaultItems.targets#L40
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up .NET ${{ matrix.dotnet }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+    # Install framework versions to test
+    # TODO: Install TargetFrameworks from .csproj.
+    #       Step to run custom MSBuild target to output $(TargetFrameworks)?
+    - name: Set up .NET Core 2.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '2.1'
+    - name: Display .NET version
+      run: dotnet --info
+    - name: Install dependencies
+      run: dotnet restore
+    # Note: Separate `dotnet build` step before `dotnet test` causes coverage
+    # collection to fail when there are generated source files (e.g. Nullable):
+    # https://github.com/coverlet-coverage/coverlet/issues/766#issuecomment-601062528
+    # https://github.com/dotnet/sdk/issues/10914
+    - name: Build and Test
+      run: "dotnet test
+        --no-restore
+        --settings TestCoverage.runsettings
+        "
+    # TODO: set-output TFM for each lcov for coveralls tag.  Complicated due
+    # to unavoidable GUID <https://github.com/microsoft/vstest/issues/2378>.
+    # - Could parse console output to match TFM from binary to attachment UUID.
+    #   Can't log to file <https://github.com/Microsoft/vstest/issues/680>
+    #   <https://github.com/microsoft/vstest/issues/2224>
+    # - When trx logger enabled, copy saved in dir with same name, overwritten
+    #   by each TFM since LogFilePrefix configuration doesn't apply to dir.
+    # - Could merge coverage files after VSTest using pwsh:
+    # https://github.com/coverlet-coverage/coverlet/pull/225#issuecomment-573896446
+    # - Different RunSettingsFilePath for each TargetFramework?
+    #   https://github.com/microsoft/vstest/pull/2272
+    # - Could force separate VSTest run for each TFM.
+    # Note: Unlike coverlet.msbuild, VSTest does not set output properties
+    # @(CoverletReport).  AfterTargets="VSTest" only useful for sequencing.
+    - name: Get path to lcov file(s)
+      id: get_lcov_paths
+      shell: bash
+      run: |-
+        i=0
+        lcov_paths=
+        for lcov_path in *.UnitTests/TestResults/*/coverage.info; do
+            if [ -e "$lcov_path" ]; then
+                echo "::set-output name=lcov_path$((i+=1))::$lcov_path"
+                lcov_paths="$lcov_paths,$lcov_path"
+            fi
+        done
+        if [ -n "$lcov_paths" ]; then
+            echo "::set-output name=lcov_paths::${lcov_paths#,}"
+        fi
+    # Note: Codecov has poor support for matrix builds
+    # https://github.com/codecov/codecov-action/issues/40
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
+        files: ${{ steps.get_lcov_paths.outputs.lcov_paths }}
+    # GitHub Workflows do not support looping.
+    # coverallsapp/github-action@master supports one file at a time.
+    # Assume at most 4 coverage files, uploaded one per step.
+    # FIXME: This is painful.  Figure out something better.
+    - name: Upload coverage 1 to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        flag-name: ${{ matrix.os }}_${{ matrix.dotnet }}_1
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        path-to-lcov: ${{ steps.get_lcov_paths.outputs.lcov_path1 }}
+      if: ${{ steps.get_lcov_paths.outputs.lcov_path1 }}
+    - name: Upload coverage 2 to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        flag-name: ${{ matrix.os }}_${{ matrix.dotnet }}_2
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        path-to-lcov: ${{ steps.get_lcov_paths.outputs.lcov_path2 }}
+      if: ${{ steps.get_lcov_paths.outputs.lcov_path2 }}
+    - name: Upload coverage 3 to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        flag-name: ${{ matrix.os }}_${{ matrix.dotnet }}_3
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        path-to-lcov: ${{ steps.get_lcov_paths.outputs.lcov_path3 }}
+      if: ${{ steps.get_lcov_paths.outputs.lcov_path3 }}
+    - name: Upload coverage 4 to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        flag-name: ${{ matrix.os }}_${{ matrix.dotnet }}_4
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        path-to-lcov: ${{ steps.get_lcov_paths.outputs.lcov_path4 }}
+      if: ${{ steps.get_lcov_paths.outputs.lcov_path4 }}
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true
