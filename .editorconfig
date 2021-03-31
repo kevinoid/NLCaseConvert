@@ -10,6 +10,7 @@ guidelines = 80, 100, 120
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[*.cs]
 # Configure language and formatting conventions to match analyzer rules below
 # https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-formatting-conventions
 # https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-language-conventions
@@ -52,6 +53,11 @@ dotnet_diagnostic.CA1506.severity = suggestion
 # Suggest "Avoid Dead Conditional Code"
 # Broken https://github.com/dotnet/roslyn-analyzers/issues/2180
 dotnet_diagnostic.CA1508.severity = suggestion
+# Enable "Identifiers should differ by more than case" for public and internal
+# Having the private backing field for a property differ in case only is
+# common, satisfies capitalization conventions, and retains clarity.
+# To allow this, exclude private API surfaces from CA1708.
+dotnet_code_quality.CA1708.api_surface = public, internal
 # Suggest "Prefer jagged arrays over multidimensional"
 # Multidimensional should use less memory (lack of indirection), rows are
 # contiguous in memory, and squareness is enforced.  Performance can vary.
@@ -74,10 +80,10 @@ dotnet_code_quality.CA2241.try_determine_additional_string_formatting_methods_au
 dotnet_diagnostic.IDE0008.severity = silent
 # Ignore "Use block body for methods"
 dotnet_diagnostic.IDE0022.severity = silent
-# Ignore "'if' statement can be simplified"
-dotnet_diagnostic.IDE0045.severity = silent
-# Ignore "'if' statement can be simplified"
-dotnet_diagnostic.IDE0046.severity = silent
+# Suggest "'if' statement can be simplified"
+dotnet_diagnostic.IDE0045.severity = suggestion
+# Suggest "'if' statement can be simplified"
+dotnet_diagnostic.IDE0046.severity = suggestion
 # Suggest "Convert to tuple"
 dotnet_diagnostic.IDE0050.severity = suggestion
 # Ignore "Substring can be simplified"
@@ -93,6 +99,9 @@ dotnet_diagnostic.IDE0072.severity = suggestion
 dotnet_diagnostic.IDE0058.severity = suggestion
 # Disable "Using directives must be placed outside of a namespace declaration"
 dotnet_diagnostic.IDE0065.severity = none
+# Suggest "Use pattern matching"
+# Sometimes it makes the code cleaner, sometimes it doesn't.
+dotnet_diagnostic.IDE0078.severity = suggestion
 # Disable "Remove redundant empty line"
 # Redundant with SA1507
 dotnet_diagnostic.RCS1036.severity = none
@@ -107,6 +116,9 @@ dotnet_diagnostic.RCS1069.severity = none
 # I find the more explicit assignment preferable most of the time.
 dotnet_diagnostic.RCS1089.severity = none
 dotnet_diagnostic.RCS1089FadeOut.severity = none
+# Disable "Call 'ConfigureAwait(false)."
+# Redundant with CA2007
+dotnet_diagnostic.RCS1090.severity = none
 # Suggest "Mark local variable as const"
 # The cost/benefit of adding "const" to local variables is low.
 # It's noisy and unlikely to result in different (optimized) codegen.
