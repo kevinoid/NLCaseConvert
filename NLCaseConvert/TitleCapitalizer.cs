@@ -293,7 +293,7 @@ namespace NLCaseConvert
 
             public string GetExcludePattern()
             {
-                StringBuilder excludePattern = new StringBuilder("(?:");
+                StringBuilder excludePattern = new("(?:");
 
                 if (this.SmallWordPatterns.Count > 0)
                 {

@@ -37,7 +37,7 @@ namespace NLCaseConvert.UnitTests
     public static class TestDataFile
     {
         private static readonly Regex PossibleEscapeRegex =
-            new Regex(@"\\([Uu][0-9a-fA-F]{8}|[Uu][0-9a-fA-F]{4}|x[0-9a-fA-F]{1,4}|.)?");
+            new(@"\\([Uu][0-9a-fA-F]{8}|[Uu][0-9a-fA-F]{4}|x[0-9a-fA-F]{1,4}|.)?");
 
         public static IEnumerable<string> ReadAllLines(string path)
         {

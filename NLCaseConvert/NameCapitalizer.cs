@@ -351,7 +351,7 @@ namespace NLCaseConvert
 
             public string GetExcludePattern()
             {
-                StringBuilder excludePattern = new StringBuilder("(?:");
+                StringBuilder excludePattern = new("(?:");
 
                 var interiorWordPatterns = this.ExcludedInteriorWordPatterns;
                 if (interiorWordPatterns.Count > 0)
