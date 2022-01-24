@@ -1,0 +1,7 @@
+# Shared editor configuration <https://editorconfig.org>
+
+[*.cs]
+# This folder is for classes which reimplement parts of the standard library.
+# They may be in several namespaces.
+# Disable "Namespace "X" does not match folder structure"
+dotnet_diagnostic.IDE0130.severity = none
