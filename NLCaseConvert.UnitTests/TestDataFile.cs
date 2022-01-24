@@ -41,8 +41,10 @@ namespace NLCaseConvert.UnitTests
 
         public static IEnumerable<string> ReadAllLines(string path)
         {
+            // Note: BaseDirectory is never null.  Annotation changed in v5.0.0
+            // https://github.com/dotnet/runtime/pull/32486
             string fullPath = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
+                AppDomain.CurrentDomain.BaseDirectory!,
                 "Test_Data",
                 path);
             using var reader = new StreamReader(fullPath, Encoding.UTF8);
