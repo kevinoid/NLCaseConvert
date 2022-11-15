@@ -15,6 +15,12 @@
     <TargetFrameworks Condition="'$(CI)' == 'True' and $([MSBuild]::IsOSPlatform('Windows'))">$(TargetFrameworks);net462</TargetFrameworks>
 
     <!--
+      Disable some compiler warnings:
+      SYSLIB1045: GeneratedRegexAttribute is not available before .NET 7.
+      -->
+    <NoWarn>$(NoWarn);SYSLIB1045</NoWarn>
+
+    <!--
       Disable check for EOL Target Framework (NETSDK1138).
       Libraries may want to test against unsupported frameworks to accommodate
       users or simplify upgrade paths.  No need to warn or fail build.

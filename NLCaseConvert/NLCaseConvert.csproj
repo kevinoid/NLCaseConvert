@@ -8,6 +8,12 @@
     <OutputType>Library</OutputType>
 
     <!--
+      Disable some compiler warnings:
+      SYSLIB1045: GeneratedRegexAttribute is not available before .NET 7.
+      -->
+    <NoWarn>$(NoWarn);SYSLIB1045</NoWarn>
+
+    <!--
       Analyze additional files (for Puma Scan)
       https://github.com/pumasecurity/puma-scan/wiki/Installation#step-3-enable-additional-file-analysis
     -->
