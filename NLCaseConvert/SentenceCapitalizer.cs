@@ -166,7 +166,7 @@ namespace NLCaseConvert
 
         public CultureInfo CultureInfo { get; }
 
-        [return: NotNullIfNotNull("input")]
+        [return: NotNullIfNotNull(nameof(input))]
         public virtual string? Transform(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
