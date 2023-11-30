@@ -95,20 +95,15 @@ namespace NLCaseConvert
             "Microsoft.Design",
             "CA1034:NestedTypesShouldNotBeVisible",
             Justification = "Builder as nested type is conventional.")]
-        public class Builder
+        public class Builder(CultureInfo cultureInfo)
         {
             public Builder()
                 : this(CultureInfo.CurrentCulture)
             {
             }
 
-            public Builder(CultureInfo cultureInfo)
-            {
-                this.CultureInfo = cultureInfo
+            public CultureInfo CultureInfo { get; } = cultureInfo
                     ?? throw new ArgumentNullException(nameof(cultureInfo));
-            }
-
-            public CultureInfo CultureInfo { get; }
 
             /// <summary>
             /// Gets additional patterns to exclude from capitalization.

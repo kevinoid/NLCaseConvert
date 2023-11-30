@@ -116,17 +116,11 @@ namespace NLCaseConvert
             "Microsoft.Design",
             "CA1034:NestedTypesShouldNotBeVisible",
             Justification = "Builder as nested type is conventional.")]
-        public class Builder
+        public class Builder(CultureInfo cultureInfo)
         {
             public Builder()
                 : this(CultureInfo.CurrentCulture)
             {
-            }
-
-            public Builder(CultureInfo cultureInfo)
-            {
-                this.CultureInfo = cultureInfo
-                    ?? throw new ArgumentNullException(nameof(cultureInfo));
             }
 
             /// <summary>
@@ -244,7 +238,8 @@ namespace NLCaseConvert
             public static string MixedCaseWordPattern { get; } =
                 @"(?!['`’-])[\p{L}\p{Mn}\p{Nd}'`’]*[\p{Lu}\p{Lt}][\p{L}\p{Mn}\p{Nd}'`’-]*";
 
-            public CultureInfo CultureInfo { get; }
+            public CultureInfo CultureInfo { get; } = cultureInfo
+                    ?? throw new ArgumentNullException(nameof(cultureInfo));
 
             /// <summary>
             /// Gets a pattern to match a word where all letters should be
