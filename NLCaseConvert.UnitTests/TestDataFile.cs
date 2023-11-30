@@ -92,12 +92,12 @@ namespace NLCaseConvert.UnitTests
             // only contains \n
             // Note: \r is very infrequent.  Test after \n for perf.
             string input = (string)pair[0];
-            string inputCrLf = input.Replace("\n", "\r\n");
+            string inputCrLf = input.Replace("\n", "\r\n", StringComparison.Ordinal);
             if (!ReferenceEquals(input, inputCrLf)
-                && input.IndexOf('\r') < 0)
+                && input.IndexOf('\r', StringComparison.Ordinal) < 0)
             {
                 string expected = (string)pair[1];
-                string expectedCrLf = expected.Replace("\n", "\r\n");
+                string expectedCrLf = expected.Replace("\n", "\r\n", StringComparison.Ordinal);
                 yield return new[] { inputCrLf, expectedCrLf };
             }
         }
