@@ -51,6 +51,9 @@ dotnet_code_quality.api_surface = all
 # Limit "Validate arguments of public methods" to public methods
 # We may forego validation of calls we control for brevity or performance
 dotnet_code_quality.CA1062.api_surface = public
+# Suggest "Specify StringComparison for clarity"
+# TODO: Enable when dropping support for .NET 4.7
+dotnet_diagnostic.CA1307.severity = suggestion
 # Suggest "Avoid excessive class coupling"
 # Broken https://github.com/dotnet/roslyn-analyzers/issues/2133
 dotnet_diagnostic.CA1506.severity = suggestion
