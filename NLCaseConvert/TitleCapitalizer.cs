@@ -108,8 +108,7 @@ namespace NLCaseConvert
             /// <summary>
             /// Gets additional patterns to exclude from capitalization.
             /// </summary>
-            public ICollection<string> AdditionalExcludePatterns { get; } =
-                new List<string>();
+            public ICollection<string> AdditionalExcludePatterns { get; } = [];
 
             /// <summary>
             /// Gets a pattern to match an email address.
@@ -219,32 +218,30 @@ namespace NLCaseConvert
             /// Gets expressions for words which are not typically capitalized
             /// in titles.
             /// </summary>
-            public ICollection<string> SmallWordPatterns { get; } =
-                new List<string>
-                {
-                    "a",
-                    "an",
-                    "and",
-                    "as",
-                    "at",
-                    "but",
-                    "by",
-                    "en",
-                    "for",
-                    "if",
-                    "in",
-                    "nor",
-                    "of",
-                    "on",
-                    "or",
-                    "per",
-                    "sic",
-                    "the",
-                    "to",
-                    "v[.]?",
-                    "via",
-                    "vs[.]?",
-                };
+            public ICollection<string> SmallWordPatterns { get; } = [
+                "a",
+                "an",
+                "and",
+                "as",
+                "at",
+                "but",
+                "by",
+                "en",
+                "for",
+                "if",
+                "in",
+                "nor",
+                "of",
+                "on",
+                "or",
+                "per",
+                "sic",
+                "the",
+                "to",
+                "v[.]?",
+                "via",
+                "vs[.]?",
+            ];
 
             /// <summary>
             /// Gets a pattern to match a URI.

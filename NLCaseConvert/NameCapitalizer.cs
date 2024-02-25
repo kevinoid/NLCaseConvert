@@ -8,7 +8,6 @@ namespace NLCaseConvert
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
 
@@ -245,15 +244,14 @@ namespace NLCaseConvert
             /// Gets a pattern to match a word where all letters should be
             /// changed to upper-case.
             /// </summary>
-            public ICollection<string> AllUpperWordPatterns { get; } =
-                new List<string>()
-                {
-                    // Roman numerals (generational suffix or reginal number)
-                    // Exclude xi which is a common Chinese family name
-                    // Add assertion to ensure match at least one character
-                    // https://stackoverflow.com/a/267405
-                    @"(?:(?=[mdclxvi])(?!xi\b)m{0,4}(?:cm|cd|d?c{0,3})(?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3}))",
-                };
+            public ICollection<string> AllUpperWordPatterns { get; } = [
+
+                // Roman numerals (generational suffix or reginal number)
+                // Exclude xi which is a common Chinese family name
+                // Add assertion to ensure match at least one character
+                // https://stackoverflow.com/a/267405
+                @"(?:(?=[mdclxvi])(?!xi\b)m{0,4}(?:cm|cd|d?c{0,3})(?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3}))",
+            ];
 
             /// <summary>
             /// Gets a pattern to match everything after the lowercase letter
@@ -287,26 +285,27 @@ namespace NLCaseConvert
             /// Gets patterns for name prefixes where both the prefix and
             /// following component are capitalized.
             /// </summary>
-            public ICollection<string> CapitalizedPrefixPatterns { get; } =
-                CelticCapitalizedPrefixPatterns
-                    .Concat(ItalianPrefixPatterns)
-                    .ToList();
+            public ICollection<string> CapitalizedPrefixPatterns { get; } = [
+                ..CelticCapitalizedPrefixPatterns,
+                ..ItalianPrefixPatterns,
+            ];
 
             /// <summary>
             /// Gets patterns for words which are excluded from capitalization
             /// in names.
             /// </summary>
-            public ICollection<string> ExcludedWordPatterns { get; } =
-                ExcludedArabicWordPatterns
-                    .Concat(new[] { MixedCaseWordPattern })
-                    .ToList();
+            public ICollection<string> ExcludedWordPatterns { get; } = [
+                ..ExcludedArabicWordPatterns,
+                MixedCaseWordPattern,
+            ];
 
             /// <summary>
             /// Gets patterns for words which are excluded from capitalization
             /// when they occur after other words in names.
             /// </summary>
-            public ICollection<string> ExcludedInteriorWordPatterns { get; } =
-                ExcludedDutchWordPatterns.ToList();
+            public ICollection<string> ExcludedInteriorWordPatterns { get; } = [
+                ..ExcludedDutchWordPatterns,
+            ];
 
             /// <summary>
             /// Gets a pattern to match a word which was not matched by any
@@ -319,10 +318,10 @@ namespace NLCaseConvert
             /// Gets patterns for name prefixes where the component following
             /// the prefix is capitalized, but the prefix is not.
             /// </summary>
-            public ICollection<string> UncapitalizedPrefixPatterns { get; } =
-                ArabicPrefixPatterns
-                    .Concat(CelticUncapitalizedPrefixPatterns)
-                    .ToList();
+            public ICollection<string> UncapitalizedPrefixPatterns { get; } = [
+                ..ArabicPrefixPatterns,
+                ..CelticUncapitalizedPrefixPatterns,
+            ];
 
             public NameCapitalizer Build()
             {
