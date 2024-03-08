@@ -15,6 +15,7 @@ namespace NLCaseConvert
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text;
 
     /// <summary>
@@ -53,6 +54,10 @@ namespace NLCaseConvert
             return AppendJoinCore(builder, char.ToString(separator), values);
         }
 
+        [SuppressMessage(
+            "Minor Bug",
+            "S2955:Generic parameters not constrained to reference types should not be compared to \"null\"",
+            Justification = "Append() contract ignores null specifically, not default(T)")]
         private static StringBuilder AppendJoinCore<T>(StringBuilder builder, string separator, IEnumerable<T> values)
         {
             Debug.Assert(separator != null, "null already replaced by empty string");
