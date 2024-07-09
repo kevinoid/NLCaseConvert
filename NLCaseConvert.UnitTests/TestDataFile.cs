@@ -12,6 +12,8 @@ namespace NLCaseConvert.UnitTests
     using System.Text;
     using System.Text.RegularExpressions;
 
+    using Xunit;
+
     /// <summary>
     /// Utility functions for dealing with test data files.
     ///
@@ -61,9 +63,11 @@ namespace NLCaseConvert.UnitTests
             }
         }
 
-        public static IEnumerable<object[]> ReadAllPairs(string path)
+        public static TheoryData<string, string> ReadAllPairs(string path)
         {
             using var lines = ReadAllLines(path).GetEnumerator();
+
+            var linePairs = new TheoryData<string, string>();
             while (lines.MoveNext())
             {
                 string input = lines.Current;
@@ -73,14 +77,23 @@ namespace NLCaseConvert.UnitTests
                     throw new FormatException("Unpaired last line");
                 }
 
-                yield return new[] { input, lines.Current };
+                linePairs.Add(input, lines.Current);
             }
+
+            return linePairs;
         }
 
-        public static IEnumerable<object[]> ReadAll(string path)
+        public static TheoryData<string, string> ReadAll(string path)
         {
-            return ReadAllPairs(path)
+            IEnumerable<object[]> alternatePairs = ReadAllPairs(path)
                 .SelectMany(GetAlternateLineEndings);
+            var linePairs = new TheoryData<string, string>();
+            foreach (var linePair in alternatePairs)
+            {
+                linePairs.Add((string)linePair[0], (string)linePair[1]);
+            }
+
+            return linePairs;
         }
 
         private static IEnumerable<object[]> GetAlternateLineEndings(
