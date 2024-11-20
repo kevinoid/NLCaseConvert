@@ -130,13 +130,12 @@ namespace NLCaseConvert
 
                 // https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Arabic#Capitalization
                 // https://en.wikipedia.org/wiki/Arabic_name
-                Array.AsReadOnly(new[]
-                {
+                Array.AsReadOnly([
                     "al-",
                     "as-",
                     "ash-",
                     "at-",
-                });
+                ]);
 
             /// <summary>
             /// Gets a pattern to match name prefixes from the Celtic language
@@ -146,13 +145,12 @@ namespace NLCaseConvert
 
                 // https://en.wikipedia.org/wiki/List_of_Scottish_Gaelic_surnames#Mac-
                 // https://en.wikipedia.org/wiki/Celtic_onomastics#Surname_prefixes
-                Array.AsReadOnly(new[]
-                {
+                Array.AsReadOnly([
                     @"ill[e']",
                     @"ma?c(\s+an?|')?",
                     @"ó",
                     @"o'",
-                });
+                ]);
 
             /// <summary>
             /// Gets a pattern to match name prefixes from the Celtic language
@@ -162,10 +160,9 @@ namespace NLCaseConvert
 
                 // https://en.wikipedia.org/wiki/List_of_Scottish_Gaelic_surnames#Mac-
                 // https://en.wikipedia.org/wiki/Celtic_onomastics#Surname_prefixes
-                Array.AsReadOnly(new[]
-                {
+                Array.AsReadOnly([
                     @"t-",
-                });
+                ]);
 
             /// <summary>
             /// Gets a pattern to match words which are excluded from
@@ -179,8 +176,7 @@ namespace NLCaseConvert
 
                 // https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Arabic#Capitalization
                 // https://en.wikipedia.org/wiki/Patronymic#Arabic
-                Array.AsReadOnly(new[]
-                {
+                Array.AsReadOnly([
                     @"ab[uū]",
                     @"ben",
                     @"bin",
@@ -188,7 +184,7 @@ namespace NLCaseConvert
                     @"bte[.]?",
                     @"ibn",
                     @"umm",
-                });
+                ]);
 
             /// <summary>
             /// Gets a pattern to match words which are excluded from
@@ -205,14 +201,13 @@ namespace NLCaseConvert
                 // https://english.stackexchange.com/a/185889
                 // https://en.wikipedia.org/wiki/Van_(Dutch)#Related_prepositions
                 // TODO: Does Belgian or German capitalization convention differ?
-                Array.AsReadOnly(new[]
-                {
+                Array.AsReadOnly([
                     @"de[nr]?",
                     @"het",
                     @"mes",
                     @"te[nr]?",
                     @"van",
-                });
+                ]);
 
             /// <summary>
             /// Gets a pattern to match Italian name prefixes.
@@ -223,12 +218,12 @@ namespace NLCaseConvert
                 // capitalized for historical figures (before surnames existed)
                 // but are for contemporary surnames.
                 // https://www.thoughtco.com/italian-capitalization-rules-2011478
-                Array.AsReadOnly(new[]
-                {
+                Array.AsReadOnly([
+
                     // Note: di and di prefixes currently excluded due to too
                     // many false-positives (Dennis, Denver, Diego, Diana)
                     @"d'",
-                });
+                ]);
 
             /// <summary>
             /// Gets a pattern to match a word with at least one uppercase or
