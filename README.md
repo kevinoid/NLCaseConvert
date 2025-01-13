@@ -1,7 +1,7 @@
 NLCaseConvert
 =============
 
-[![Build Status](https://img.shields.io/appveyor/ci/kevinoid/NLCaseConvert/main.svg?style=flat&label=build+on+windows)](https://ci.appveyor.com/project/kevinoid/NLCaseConvert)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/kevinoid/NLCaseConvert/dotnet.yml?branch=main&style=flat&label=build)](https://github.com/kevinoid/NLCaseConvert/actions?query=branch%3Amain)
 [![Coverage](https://img.shields.io/codecov/c/github/kevinoid/NLCaseConvert.svg?style=flat)](https://codecov.io/github/kevinoid/NLCaseConvert?branch=main)
 [![.NET Version](https://img.shields.io/badge/.NET-netstandard2.1-informational.svg?style=flat)](https://www.nuget.org/packages/NLCaseConvert)
 [![Version on NuGet](https://img.shields.io/nuget/v/NLCaseConvert.svg?style=flat)](https://www.nuget.org/packages/NLCaseConvert)
