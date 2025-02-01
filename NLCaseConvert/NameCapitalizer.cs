@@ -1,5 +1,5 @@
 // <copyright file="NameCapitalizer.cs" company="Kevin Locke">
-// Copyright 2019-2020 Kevin Locke.  All rights reserved.
+// Copyright 2019-2025 Kevin Locke.  All rights reserved.
 // </copyright>
 
 namespace NLCaseConvert
