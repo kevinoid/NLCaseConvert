@@ -36,7 +36,7 @@ namespace NLCaseConvert.UnitTests
     /// character is <c>#</c>) are ignored.
     /// </para>
     /// </summary>
-    public static class TestDataFile
+    internal static class TestDataFile
     {
         private static readonly Regex PossibleEscapeRegex =
             new(@"\\([Uu][0-9a-fA-F]{8}|[Uu][0-9a-fA-F]{4}|x[0-9a-fA-F]{1,4}|.)?");
