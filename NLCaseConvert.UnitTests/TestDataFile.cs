@@ -85,33 +85,25 @@ namespace NLCaseConvert.UnitTests
 
         public static TheoryData<string, string> ReadAll(string path)
         {
-            IEnumerable<object[]> alternatePairs = ReadAllPairs(path)
-                .SelectMany(GetAlternateLineEndings);
-            var linePairs = new TheoryData<string, string>();
-            foreach (var linePair in alternatePairs)
-            {
-                linePairs.Add((string)linePair[0], (string)linePair[1]);
-            }
-
-            return linePairs;
+            return [.. ReadAllPairs(path).SelectMany(GetAlternateLineEndings)];
         }
 
-        private static IEnumerable<object[]> GetAlternateLineEndings(
-            object[] pair)
+        private static IEnumerable<TheoryDataRow<string, string>>
+            GetAlternateLineEndings(TheoryDataRow<string, string> pair)
         {
             yield return pair;
 
             // Create a test case with \r\n line endings, if the test case
             // only contains \n
             // Note: \r is very infrequent.  Test after \n for perf.
-            string input = (string)pair[0];
+            string input = pair.Data.Item1;
             string inputCrLf = input.Replace("\n", "\r\n");
             if (!ReferenceEquals(input, inputCrLf)
                 && input.IndexOf('\r') < 0)
             {
-                string expected = (string)pair[1];
+                string expected = pair.Data.Item2;
                 string expectedCrLf = expected.Replace("\n", "\r\n");
-                yield return new[] { inputCrLf, expectedCrLf };
+                yield return new(inputCrLf, expectedCrLf);
             }
         }
 
