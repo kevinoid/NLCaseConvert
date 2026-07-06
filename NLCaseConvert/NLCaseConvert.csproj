@@ -14,6 +14,13 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
     <!--
+      Don't publish XML documentation files, which are unlikely to be useful
+      for users of Exe projects:
+      https://learn.microsoft.com/dotnet/core/project-sdk/msbuild-props#publishdocumentationfiles
+    -->
+    <PublishDocumentationFiles>false</PublishDocumentationFiles>
+
+    <!--
       Disable some compiler warnings:
       SYSLIB1045: GeneratedRegexAttribute is not available before .NET 7.
       -->
