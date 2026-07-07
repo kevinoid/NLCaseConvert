@@ -2,26 +2,25 @@
 // Copyright 2019-2026 Kevin Locke.  All rights reserved.
 // </copyright>
 
-namespace NLCaseConvert.UnitTests
+namespace NLCaseConvert.UnitTests;
+
+using System.Globalization;
+
+using Xunit;
+
+public static class TitleCapitalizerTests
 {
-    using System.Globalization;
+    private static readonly TitleCapitalizer TitleCapitalizer =
+        new TitleCapitalizer.Builder(CultureInfo.InvariantCulture)
+        .Build();
 
-    using Xunit;
-
-    public static class TitleCapitalizerTests
+    [Theory]
+    [InlineData(null, null)]
+    [InlineData("", "")]
+    [InlineData(" ", " ")]
+    [MemberData(nameof(TestDataFile.ReadAll), "Titles.txt", MemberType = typeof(TestDataFile))]
+    public static void CapitalizesInvariantCorrectly(string? input, string? expected)
     {
-        private static readonly TitleCapitalizer TitleCapitalizer =
-            new TitleCapitalizer.Builder(CultureInfo.InvariantCulture)
-            .Build();
-
-        [Theory]
-        [InlineData(null, null)]
-        [InlineData("", "")]
-        [InlineData(" ", " ")]
-        [MemberData(nameof(TestDataFile.ReadAll), "Titles.txt", MemberType = typeof(TestDataFile))]
-        public static void CapitalizesInvariantCorrectly(string? input, string? expected)
-        {
-            Assert.Equal(expected, TitleCapitalizer.Transform(input));
-        }
+        Assert.Equal(expected, TitleCapitalizer.Transform(input));
     }
 }
