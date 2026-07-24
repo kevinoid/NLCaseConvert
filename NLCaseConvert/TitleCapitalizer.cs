@@ -27,7 +27,8 @@ public class TitleCapitalizer
 
         this.capitalizeRegex = new Regex(
             GetPattern(builder),
-            RegexOptions.ExplicitCapture);
+            RegexOptions.ExplicitCapture,
+            builder.MatchTimeout);
     }
 
     public CultureInfo CultureInfo { get; }
@@ -97,6 +98,8 @@ public class TitleCapitalizer
         Justification = "Builder as nested type is conventional.")]
     public class Builder(CultureInfo cultureInfo)
     {
+        private static readonly TimeSpan DefaultMatchTimeout = TimeSpan.FromSeconds(10);
+
         public Builder()
             : this(CultureInfo.CurrentCulture)
         {
@@ -213,6 +216,14 @@ public class TitleCapitalizer
         /// words/phrases.
         /// </summary>
         public bool CapitalizeSmallInHyphenated { get; }
+
+        /// <summary>
+        /// Gets or sets the maximum time interval that can elapse in a
+        /// pattern-matching operation before
+        /// <see cref="RegexMatchTimeoutException"/> is thrown, or
+        /// <see cref="Regex.InfiniteMatchTimeout"/> if time-outs are disabled.
+        /// </summary>
+        public TimeSpan MatchTimeout { get; set; } = DefaultMatchTimeout;
 
         /// <summary>
         /// Gets expressions for words which are not typically capitalized

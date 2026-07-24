@@ -14,6 +14,8 @@ NLCaseConvert.NameCapitalizer.Builder.GetAllUpperPattern() -> string!
 NLCaseConvert.NameCapitalizer.Builder.GetCapitalizedPrefixPattern() -> string!
 NLCaseConvert.NameCapitalizer.Builder.GetExcludePattern() -> string!
 NLCaseConvert.NameCapitalizer.Builder.GetUncapitalizedPrefixPattern() -> string!
+NLCaseConvert.NameCapitalizer.Builder.MatchTimeout.get -> System.TimeSpan
+NLCaseConvert.NameCapitalizer.Builder.MatchTimeout.set -> void
 NLCaseConvert.NameCapitalizer.Builder.OtherWordPattern.get -> string!
 NLCaseConvert.NameCapitalizer.Builder.UncapitalizedPrefixPatterns.get -> System.Collections.Generic.ICollection<string!>!
 NLCaseConvert.NameCapitalizer.CultureInfo.get -> System.Globalization.CultureInfo!
@@ -31,6 +33,8 @@ NLCaseConvert.SentenceCapitalizer.Builder.Canonicalizer.get -> System.Func<strin
 NLCaseConvert.SentenceCapitalizer.Builder.Canonicalizer.set -> void
 NLCaseConvert.SentenceCapitalizer.Builder.CapitalizeWordSuffixPattern.get -> string!
 NLCaseConvert.SentenceCapitalizer.Builder.CultureInfo.get -> System.Globalization.CultureInfo!
+NLCaseConvert.SentenceCapitalizer.Builder.MatchTimeout.get -> System.TimeSpan
+NLCaseConvert.SentenceCapitalizer.Builder.MatchTimeout.set -> void
 NLCaseConvert.SentenceCapitalizer.CultureInfo.get -> System.Globalization.CultureInfo!
 NLCaseConvert.SentenceCapitalizer.SentenceCapitalizer(NLCaseConvert.SentenceCapitalizer.Builder! builder) -> void
 NLCaseConvert.TitleCapitalizer
@@ -48,6 +52,8 @@ NLCaseConvert.TitleCapitalizer.Builder.CultureInfo.get -> System.Globalization.C
 NLCaseConvert.TitleCapitalizer.Builder.EmailPattern.get -> string!
 NLCaseConvert.TitleCapitalizer.Builder.FilePathPattern.get -> string!
 NLCaseConvert.TitleCapitalizer.Builder.GetExcludePattern() -> string!
+NLCaseConvert.TitleCapitalizer.Builder.MatchTimeout.get -> System.TimeSpan
+NLCaseConvert.TitleCapitalizer.Builder.MatchTimeout.set -> void
 NLCaseConvert.TitleCapitalizer.Builder.MixedCaseWordPattern.get -> string!
 NLCaseConvert.TitleCapitalizer.Builder.OtherWordPattern.get -> string!
 NLCaseConvert.TitleCapitalizer.Builder.SmallWordPatterns.get -> System.Collections.Generic.ICollection<string!>!
