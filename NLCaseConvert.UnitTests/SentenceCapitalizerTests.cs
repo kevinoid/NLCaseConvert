@@ -45,11 +45,7 @@ public static class SentenceCapitalizerTests
                 replacements.TryGetValue(word, out string? replacement),
                 "Called at most once for each expected word");
             replacements.Remove(word);
-
-            // Note: ! required until Assert.True annotated with DoesNotReturnIf
-            // https://github.com/xunit/xunit/issues/2011
-            // https://github.com/xunit/assert.xunit/pull/36
-            return replacement!;
+            return replacement;
         }
 
         var capitalizer = new SentenceCapitalizer.Builder(CultureInfo.InvariantCulture)
